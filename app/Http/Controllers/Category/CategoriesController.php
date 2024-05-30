@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use App\Repositories\All\Categories\CategoryInterface;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use PhpParser\Node\Expr\Cast\String_;
 
 class CategoriesController extends Controller
 {
@@ -60,6 +63,10 @@ class CategoriesController extends Controller
         return Inertia::render('Categories/Edit/Index', [
             'categories' => $category,
         ]);
+
+        // return Inertia::render('Categories/Edit/Index', [
+        //     'category' => new CategoryResource($category),
+        // ]);
     }
 
     /**

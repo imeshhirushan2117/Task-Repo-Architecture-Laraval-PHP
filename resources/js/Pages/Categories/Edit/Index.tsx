@@ -8,22 +8,26 @@ import { FormEventHandler, useEffect, useState } from "react";
 import { get } from "http";
 import { log } from "console";
 
-export default function Create({ auth , categories}: PageProps) {
+export default function Create({ auth , categories}: any) {
 
-    console.log("Categories:", JSON.stringify(categories, null, 2));
+    console.log("Categories:" + categories.name);
     
     const [aleart, setAleart] = useState(false);
 
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: "",
-        description: "",
+    const { data, setData, patch, processing, errors, reset } = useForm({
+        name: categories.name,
+        description: categories.description,
     });
 
     const edit: FormEventHandler = (e) => {
         e.preventDefault();
         setAleart(true);
         setTimeout(() => {
-            //   post(route("category.update" , categories.id));
+            patch(route("category.update" , categories.id),{
+                onSuccess:()=>{
+                    setAleart(false);
+                }
+            });
         }, 2000);
     };
 
