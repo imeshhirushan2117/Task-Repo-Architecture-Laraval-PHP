@@ -14,11 +14,11 @@ export default function Create({ auth, categories}: any) {
 
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        // name: "",
-        // description: "",
-        // price: "",
-        // // category_id: categories.name,
-        // status: "null",
+        name: "",
+        description: "",
+        price: "",
+        // category_id: categories.name,
+        status: "null",
     });
 
     const submit: FormEventHandler = (e) => {
@@ -160,14 +160,14 @@ export default function Create({ auth, categories}: any) {
                                     <select
                                         id="category_id"
                                         name="category_id"
-                                        value={data.category_id}
+                                        // value={data.category_id}
                                         className="mt-1 block w-full"
-                                        onChange={(e) =>
-                                            setData(
-                                                "category_id",
-                                                e.target.value
-                                            )
-                                        }
+                                        // onChange={(e) =>
+                                        //     setData(
+                                        //         "category_id",
+                                        //         e.target.value
+                                        //     )
+                                        // }
                                         required
                                     >
                                      <option selected >Select Category</option>
@@ -182,7 +182,7 @@ export default function Create({ auth, categories}: any) {
                                             ))}
                                     </select>
                                     <InputError
-                                        message={errors.category_id}
+                                        // message={errors.category_id}
                                         className="mt-2"
                                     />
                                 </div>
