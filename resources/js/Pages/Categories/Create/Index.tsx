@@ -5,8 +5,10 @@ import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import { FormEventHandler, useState } from "react";
+import { log } from "console";
 
 export default function Index({ auth }: PageProps) {
+
     const [aleart, setAleart] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -23,10 +25,11 @@ export default function Index({ auth }: PageProps) {
             post(route("category.store"));
             clear();
         }, 1000);
-
-        
     };
 
+
+
+    
     const clear = () => {
         data.name = "";
         data.description = "";

@@ -22,7 +22,9 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        return Inertia::render('Categories/All/Index');
+        return Inertia::render('Categories/All/Index',[
+            "categories" => $this->categoryInterface->all(),
+        ]);
     }
 
     /**

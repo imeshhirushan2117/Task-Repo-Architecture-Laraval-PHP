@@ -2,7 +2,9 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import { PageProps } from "@/types";
 
-export default function Index({ auth }: PageProps) {
+export default function Index({ auth, categories }: PageProps) {
+    console.log("Categories:", categories);
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -40,43 +42,36 @@ export default function Index({ auth }: PageProps) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th
-                                    scope="row"
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                            {categories.map((category) => (
+                                <tr
+                                    key={category.id}
+                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                                 >
-                                    Apple
-                                </th>
-                                <td className="px-6 py-4">Red Apple</td>
-                                {/* <td className="flex items-center px-6 py-4">
-                                    <a
-                                        href="#"
-                                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                    <th
+                                        scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        Edit
-                                    </a>
-                                    <a
-                                        href="#"
-                                        className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3"
-                                    >
-                                        Remove
-                                    </a>
-                                </td> */}
-                                <td className="flex items-center px-6 py-4">
-                                    <button
-                                        // onClick={()=>edit(category.id)}
-                                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        //  onClick={()=>remove(category.id)}
-                                        className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3"
-                                    >
-                                        Remove
-                                    </button>
-                                </td>
-                            </tr>
+                                        {category.name}
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        {category.description}
+                                    </td>
+                                    <td className="flex items-center px-6 py-4">
+                                        <button
+                                            // onClick={() => editCategory(category.id)}
+                                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            // onClick={() => removeCategory(category.id)}
+                                            className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3"
+                                        >
+                                            Remove
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

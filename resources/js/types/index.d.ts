@@ -1,5 +1,5 @@
+import { Category } from '@/Pages/Categories/All/Index';
 import { Config } from 'ziggy-js';
-
 export interface User {
     id: number;
     name: string;
@@ -12,4 +12,10 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: User;
     };
     ziggy: Config & { location: string };
+
+    categories: {
+        id: number;
+        name: string;
+        description: string;
+    }[];
 };
