@@ -10,16 +10,18 @@ use Inertia\Inertia;
 class CategoriesController extends Controller
 {
 
-// public function __construct(protected CategoryInterface $categoryInterface){}
+    public function __construct(
+        protected CategoryInterface $categoryInterface,
+    ) {
+    }
 
     /**
      * Display a listing of the resource.
      */
 
-     
+
     public function index()
     {
-    
         return Inertia::render('Categories/All/Index');
     }
 
@@ -36,7 +38,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-    
+        $this->categoryInterface->create($request->all());
     }
 
     /**

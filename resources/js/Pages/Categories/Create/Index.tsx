@@ -17,10 +17,19 @@ export default function Index({ auth }: PageProps) {
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        setAleart(true);
+        setAleart(true); 
+       
         setTimeout(() => {
-             post(route("catrgory.store"));
+            post(route("category.store"));
+            clear();
         }, 1000);
+
+        
+    };
+
+    const clear = () => {
+        data.name = "";
+        data.description = "";
     };
 
     return (
@@ -61,7 +70,7 @@ export default function Index({ auth }: PageProps) {
                         <span className="sr-only">Info</span>
                         <div>
                             <span className="font-medium">
-                            Catagory Save Success!
+                                Catagory Save Success!
                             </span>
                         </div>
                     </div>
@@ -76,7 +85,7 @@ export default function Index({ auth }: PageProps) {
                                 <div>
                                     <InputLabel
                                         htmlFor="name"
-                                        value="Product Name"
+                                        value="Categery Name"
                                     />
 
                                     <TextInput
