@@ -1,4 +1,3 @@
-import { Category } from '@/Pages/Categories/All/Index';
 import { Config } from 'ziggy-js';
 export interface User {
     id: number;

@@ -4,27 +4,26 @@ import { PageProps } from "@/types";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { get } from "http";
+import { log } from "console";
 
-export default function Create({ auth , editCategory}: any) {
+export default function Create({ auth , categories}: PageProps) {
 
-
-    console.log(editCategory);
+    console.log("Categories:", JSON.stringify(categories, null, 2));
     
-
     const [aleart, setAleart] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: editCategory.name,
-        description: editCategory.description,
+        name: "",
+        description: "",
     });
 
     const edit: FormEventHandler = (e) => {
         e.preventDefault();
         setAleart(true);
         setTimeout(() => {
-             post(route("categories.update" , editCategory.id));
+            //   post(route("category.update" , categories.id));
         }, 2000);
     };
 
@@ -39,7 +38,7 @@ export default function Create({ auth , editCategory}: any) {
 
                     <Link
                         className="bg-yellow-500 text-black px-6 py-2 rounded-lg duration-300 ease-in-out transition-all hover:bg-yellow-400"
-                        href={route("categories.index")}
+                        href={route("category.index")}
                     >
                         Back
                     </Link>

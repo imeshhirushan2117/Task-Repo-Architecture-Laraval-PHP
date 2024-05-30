@@ -22,7 +22,7 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        return Inertia::render('Categories/All/Index',[
+        return Inertia::render('Categories/All/Index', [
             "categories" => $this->categoryInterface->all(),
         ]);
     }
@@ -56,7 +56,10 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        return Inertia::render('Categories/Edit/Index');
+        $category = $this->categoryInterface->findById($id);
+        return Inertia::render('Categories/Edit/Index', [
+            'categories' => $category,
+        ]);
     }
 
     /**
@@ -64,7 +67,7 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->categoryInterface->update($id, $request->all());
     }
 
     /**
@@ -72,6 +75,6 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->categoryInterface->deleteById($id);
     }
 }

@@ -1,9 +1,16 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import { PageProps } from "@/types";
 
 export default function Index({ auth, categories }: PageProps) {
     console.log("Categories:", categories);
+
+    const edit = (id:number) =>{
+        router.get(route('category.edit',id))
+    }
+    const remove = (id:number) =>{
+        router.delete(route('category.destroy',id))
+    }
 
     return (
         <AuthenticatedLayout
@@ -58,13 +65,13 @@ export default function Index({ auth, categories }: PageProps) {
                                     </td>
                                     <td className="flex items-center px-6 py-4">
                                         <button
-                                            // onClick={() => editCategory(category.id)}
+                                            onClick={() => edit(category.id)}
                                             className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         >
                                             Edit
                                         </button>
                                         <button
-                                            // onClick={() => removeCategory(category.id)}
+                                            onClick={() => remove(category.id)}
                                             className="font-medium text-red-600 dark:text-red-500 hover:underline ms-3"
                                         >
                                             Remove
